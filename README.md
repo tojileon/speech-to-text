@@ -40,9 +40,11 @@ from speech_to_text.config import get_api_key
 api_key = get_api_key()
 converter = MalayalamSpeechToText(api_key)
 
-# Transcribe an audio file
-text = converter.transcribe("path/to/your/audio/file.mp3")
-print(text)
+# Transcribe the audio file and save to text file
+input_file = "/path/to/your/audio/file.m4a"  # Supports various formats like .m4a, .mp3, etc.
+text = converter.transcribe(input_file, save_to_file=True)
+print(f"Transcription saved to: {input_file.rsplit('.', 1)[0] + '.txt'}")
+print(f"Transcribed text: {text}")
 ```
 
 ### Save Transcription to File
