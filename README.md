@@ -14,7 +14,7 @@ This project converts speech in Malayalam to Malayalam text using the sarvam.ai 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/speech-to-text.git
+git clone https://github.com/tojileon/speech-to-text.git
 cd speech-to-text
 ```
 
