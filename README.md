@@ -18,18 +18,37 @@ git clone https://github.com/tojileon/speech-to-text.git
 cd speech-to-text
 ```
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+2. Set up your environment:
+
+   **Using Conda (Recommended):**
+   ```bash
+   conda create -n wave_env python=3.11
+   conda activate wave_env
+   conda install python-dotenv
+   pip install -r requirements.txt
+   ```
+
+   **Using pip:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
 3. Set up your API key (Required):
-```bash
-# Set your sarvam.ai API key as an environment variable
-export SARVAM_API_KEY="your-api-key-here"
-```
 
-Note: The API key must be set as an environment variable. There is no fallback or default key.
+   **Option 1: Environment Variable**
+   ```bash
+   export SARVAM_API_KEY="your-api-key-here"
+   ```
+
+   **Option 2: .env file (Recommended)**
+   Create a `.env` file in the project root:
+   ```
+   SARVAM_API_KEY=your-api-key-here
+   ```
+
+Note: The API key must be set either as an environment variable or in the `.env` file. There is no fallback or default key.
 
 ## About sarvam.ai API
 
@@ -37,10 +56,7 @@ This project uses the sarvam.ai Speech-to-Text API for Malayalam transcription. 
 
 1. Sign up for a sarvam.ai account at [https://sarvam.ai](https://sarvam.ai)
 2. Get your API key from the sarvam.ai dashboard
-3. Set the API key as an environment variable (Required):
-   ```bash
-   export SARVAM_API_KEY="your-api-key-here"
-   ```
+3. Set the API key using one of the methods above
 
 The API supports:
 - Malayalam language (ml-IN)
@@ -55,6 +71,10 @@ The API supports:
 ```python
 from speech_to_text import MalayalamSpeechToText
 from speech_to_text.config import get_api_key
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize the converter
 api_key = get_api_key()  # Will raise ValueError if SARVAM_API_KEY is not set
