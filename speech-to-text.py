@@ -1,7 +1,9 @@
 from speech_to_text import MalayalamSpeechToText
 from speech_to_text.config import get_api_key
+from dotenv import load_dotenv
 
 # Initialize the converter
+load_dotenv()
 api_key = get_api_key()
 converter = MalayalamSpeechToText(api_key)
 
