@@ -28,6 +28,20 @@ pip install -r requirements.txt
 export SARVAM_API_KEY="your-api-key-here"
 ```
 
+## About sarvam.ai API
+
+This project uses the sarvam.ai Speech-to-Text API for Malayalam transcription. The API provides high-quality speech recognition specifically trained for Malayalam language. To use this project, you'll need to:
+
+1. Sign up for a sarvam.ai account at [https://sarvam.ai](https://sarvam.ai)
+2. Get your API key from the sarvam.ai dashboard
+3. Set the API key as an environment variable or use the default key in the config file
+
+The API supports:
+- Malayalam language (ml-IN)
+- Various audio formats (converted to WAV)
+- Real-time transcription
+- High accuracy speech recognition
+
 ## Usage
 
 ### Basic Usage
