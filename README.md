@@ -23,10 +23,13 @@ cd speech-to-text
 pip install -r requirements.txt
 ```
 
-3. Set up your API key:
+3. Set up your API key (Required):
 ```bash
+# Set your sarvam.ai API key as an environment variable
 export SARVAM_API_KEY="your-api-key-here"
 ```
+
+Note: The API key must be set as an environment variable. There is no fallback or default key.
 
 ## About sarvam.ai API
 
@@ -34,7 +37,10 @@ This project uses the sarvam.ai Speech-to-Text API for Malayalam transcription. 
 
 1. Sign up for a sarvam.ai account at [https://sarvam.ai](https://sarvam.ai)
 2. Get your API key from the sarvam.ai dashboard
-3. Set the API key as an environment variable or use the default key in the config file
+3. Set the API key as an environment variable (Required):
+   ```bash
+   export SARVAM_API_KEY="your-api-key-here"
+   ```
 
 The API supports:
 - Malayalam language (ml-IN)
@@ -51,7 +57,7 @@ from speech_to_text import MalayalamSpeechToText
 from speech_to_text.config import get_api_key
 
 # Initialize the converter
-api_key = get_api_key()
+api_key = get_api_key()  # Will raise ValueError if SARVAM_API_KEY is not set
 converter = MalayalamSpeechToText(api_key)
 
 # Transcribe the audio file and save to text file
