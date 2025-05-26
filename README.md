@@ -8,6 +8,7 @@ This project converts speech in Malayalam to Malayalam text using the sarvam.ai 
 - Transcribe Malayalam speech to text using sarvam.ai API
 - Automatic format conversion when needed
 - Error handling and logging
+- Save transcriptions to text files
 
 ## Installation
 
@@ -29,6 +30,8 @@ export SARVAM_API_KEY="your-api-key-here"
 
 ## Usage
 
+### Basic Usage
+
 ```python
 from speech_to_text import MalayalamSpeechToText
 from speech_to_text.config import get_api_key
@@ -37,9 +40,36 @@ from speech_to_text.config import get_api_key
 api_key = get_api_key()
 converter = MalayalamSpeechToText(api_key)
 
-# Convert and transcribe an audio file
+# Transcribe an audio file
 text = converter.transcribe("path/to/your/audio/file.mp3")
 print(text)
+```
+
+### Save Transcription to File
+
+The converter automatically saves the transcription to a text file with the same name as your audio file (but with .txt extension):
+
+```python
+# This will save the transcription to "path/to/your/audio/file.txt"
+text = converter.transcribe("path/to/your/audio/file.mp3", save_to_file=True)
+```
+
+### Convert Audio to WAV Only
+
+If you just want to convert an audio file to WAV format without transcription:
+
+```python
+wav_file = converter.convert_to_wav("path/to/your/audio/file.mp3")
+print(f"Converted file saved to: {wav_file}")
+```
+
+### Save Text Manually
+
+You can also save the transcribed text manually:
+
+```python
+text = converter.transcribe("path/to/your/audio/file.mp3", save_to_file=False)
+converter.save_text(text, "custom_output.txt")
 ```
 
 ## Supported Audio Formats
@@ -49,11 +79,23 @@ The converter supports various audio formats including:
 - WAV
 - OGG
 - FLAC
+- M4A
 - And more (supported by pydub)
 
 ## Error Handling
 
-The converter includes comprehensive error handling and logging. All operations are logged with appropriate error messages when something goes wrong.
+The converter includes comprehensive error handling and logging. All operations are logged with appropriate error messages when something goes wrong. You can adjust the logging level by modifying the logging configuration in the code.
+
+## API Response Format
+
+The API returns a JSON response with the following structure:
+```json
+{
+    "request_id": "unique_request_id",
+    "transcript": "മലയാളം ടെക്സ്റ്റ്",
+    "language_code": "ml-IN"
+}
+```
 
 ## License
 
